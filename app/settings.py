@@ -1,7 +1,7 @@
 from datetime import timedelta
 from pathlib import Path
 import os
-
+from decouple import Csv, config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,13 +10,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*%y5)ai8_q$(qb^_q@27@-o=+xku-ttsb$cs%ls76mc#9n)(n6'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('HOSTS', cast=Csv())
 
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # Application definition
 
@@ -72,18 +79,18 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {},
     'users': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'listings_user',
-        'USER': 'postgres',
-        'PASSWORD': 'eE9DNbhpRi3p7sb',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_USER_NAME'),
+        'USER': config('DB_USER_USERNAME'),
+        'PASSWORD': config('DB_USER_PASSWORD'),
+        'PORT': config('DB_PORT'),
     },
     'listings': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'listings_listing',
-        'USER': 'postgres',
-        'PASSWORD': 'eE9DNbhpRi3p7sb',
-        'PORT': '5432'
+        'NAME': config('DB_USER_NAME'),
+        'USER': config('DB_USER_USERNAME'),
+        'PASSWORD': config('DB_USER_PASSWORD'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -114,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Johannesburg'
 
 USE_I18N = True
 

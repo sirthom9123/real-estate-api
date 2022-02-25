@@ -1,0 +1,22 @@
+SECRET_KEY=Your secret key
+DEBUG=True
+DB_USER_NAME=your db name
+DB_USER_USERNAME=your db user
+DB_USER_PASSWORD=somepassword
+DB_HOST=db host
+DB_PORT=db port
+
+DB_LISTING_NAME=your db name
+DB_LISTING_USERNAME=your db user
+DB_LISTING_PASSWORD=somepassword
+DB_HOST=db host
+DB_PORT=db port
+
+EMAIL_BACKEND = django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST = your host 
+EMAIL_PORT = your port
+EMAIL_USE_TLS = bool
+EMAIL_HOST_USER = abc@efg.com
+EMAIL_HOST_PASSWORD = somepassword
+
+HOSTS = []
